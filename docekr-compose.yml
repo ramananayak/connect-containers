@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER_DATABASE: knights
+    ports:
+      - "3307:3306"
+
+  testapp:
+    build: ./app
+    depends_on:
+      - db
+    links:
+      - db
